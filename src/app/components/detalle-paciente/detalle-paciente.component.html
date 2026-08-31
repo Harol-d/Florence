@@ -1,0 +1,36 @@
+<div class="detPac" *ngIf="pac">
+  <div class="infoEmer">
+    <label>nombre</label>
+    <div class="inpEmer">{{ pac.nombre }}</div>
+  </div>
+
+  <div class="infoEmer">
+    <label>grupo sanguineo</label>
+    <div class="inpEmer">{{ pac.rh }}</div>
+  </div>
+
+  <div class="infoEmer">
+    <label>edad</label>
+    <div class="inpEmer">{{ pac.edad }}</div>
+  </div>
+
+  <div class="infoEmer">
+    <label>religion</label>
+    <div class="inpEmer">{{ pac.religion }}</div>
+  </div>
+
+  <div class="infoEmer">
+    <label>contacto de emergencia</label>
+    <div class="inpEmer">{{ pac.contEmergencia }}</div>
+  </div>
+
+  <div class="infoEmer">
+    <label>antecedentes personales</label>
+    <div class="inpEmer textareaEmer">{{ pac.antPersonales }}</div>
+  </div>
+
+  <div class="infoEmer">
+    <label>alergias</label>
+    <div class="inpEmer">{{ pac.antAlergicos }}</div>
+  </div>
+</div>

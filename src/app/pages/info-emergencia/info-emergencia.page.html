@@ -1,0 +1,13 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Información de emergencia</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+  <div class="cont1">
+    <app-lector (pacEncontrado)="recibirDatos($event)"></app-lector>
+    <app-detalle-paciente [pac]="pacEncontrado" *ngIf="pacEncontrado"></app-detalle-paciente>
+  </div>
+</ion-content>

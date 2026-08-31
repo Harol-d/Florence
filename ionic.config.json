@@ -1,0 +1,7 @@
+{
+  "name": "florence",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
