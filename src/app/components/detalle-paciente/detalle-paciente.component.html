@@ -36,7 +36,18 @@
     </div>
   </div>
 
+  <div>
+    <ion-button (click)="abrirFC()">
+      MEDIR FRECUENCIA CARDIACA
+    </ion-button>
+  </div>
+
+  @if (mostrarFC) {
+    <app-frecuencia-cardiaca [lect]="lectDetalle"></app-frecuencia-cardiaca>
+  }
+
   <h3>Médicos tratantes</h3>
+
   @for (m of pac.medicos; track m.codigoRegistro) {
     <app-consultas [medico]="m"></app-consultas>
   }

@@ -1,0 +1,18 @@
+<div class="contFrec">
+  <h3>Frecuencia Cardiaca</h3>
+  @if(lect.presencia==false){
+    <p id="msjNoPres">
+      Acerque su dedo indice al lector
+    </p>
+
+  }
+
+  <p>BPM: {{lect.bpm}}</p>
+
+  @if(lect.valido==true){
+    <p>Valor fidedigno?: Si</p>
+  }
+  @else{
+    <p>Valor fidedigno?: No</p>
+  }
+</div>

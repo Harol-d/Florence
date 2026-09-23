@@ -3,6 +3,8 @@ import { interval, Subscription } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { IonInput, IonButton } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
+import {DatosEmergencia} from '../../data/interfaces/datos-emergencia.model'
+import {LecturasEsp} from '../../data/interfaces/lecturas-esp.model'
 
 @Component({
   selector: 'app-lector',
@@ -11,15 +13,16 @@ import { FormsModule } from '@angular/forms';
   standalone:true,
   imports: [IonInput, IonButton, FormsModule]
 })
-export class LectorComponent  implements OnInit {
+export class LectorComponent implements OnInit {
   codUid: string= "";
   lecturas: Subscription;
-  ipLector: string= "http://10.128.222.221/"
+  ipLector: string= "http://florence-lector.local"
   noPac: string = "";
-  http: any;
-  actualizar: any;
+  http: HttpClient;
+  actualizar: ChangeDetectorRef;
 
   @Output() pacEncontrado = new EventEmitter();
+  @Output() lectFrec = new EventEmitter();
 
   constructor(pet: HttpClient, detec: ChangeDetectorRef) {
     this.http= pet;
@@ -27,12 +30,13 @@ export class LectorComponent  implements OnInit {
   }
 
   ngOnInit() {
-    this.lecturas= interval(1000).subscribe(()=>{this.leerPulsera();})
+    this.lecturas= interval(100).subscribe(()=>{this.leerPulsera();})
   }
 
   leerPulsera(){
-    this.http.get(this.ipLector).subscribe((res:any)=>{
-      this.codUid= res["uid"];
+    this.http.get(this.ipLector).subscribe((res:LecturasEsp)=>{
+      this.codUid= res.uid;
+      this.lectFrec.emit(res);
       this.actualizar.detectChanges();
     })
   }
@@ -41,7 +45,7 @@ export class LectorComponent  implements OnInit {
     let api = `http://127.0.0.1:8000/pacientes/${this.codUid}`;
 
     this.http.get(api).subscribe(
-      (res: any) => {
+      (res: DatosEmergencia) => {
         this.noPac = "";
         this.pacEncontrado.emit(res);
       },
@@ -51,5 +55,4 @@ export class LectorComponent  implements OnInit {
       }
     );
   }
-
 }
