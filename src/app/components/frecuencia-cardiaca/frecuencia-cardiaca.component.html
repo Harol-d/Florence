@@ -4,14 +4,14 @@
   @if (lect.presencia) {
     <p>BPM: {{ lect.bpm }}</p>
     @if (lect.valido) {
-      <p>¿Creer en este valor?: Con este sensor 50/50... pero si mas que a los hombres</p>
+      <p>¿Creer en este valor?: Con este sensor 50/50... pero si mas que a los hombres.</p>
     } @else {
-      <p>¿Creer en este valor?: Si, claro. Como en los hombres</p>
+      <p>¿Creer en este valor?: Si, claro. Como en los hombres.</p>
     }
   }
   @else{
     <p id="msjNoPres">
-      Acerque su dedo indice al lector
+      Acerque su dedo indice al lector.
     </p>
   }
   <ion-button (click)="ocultar()">
