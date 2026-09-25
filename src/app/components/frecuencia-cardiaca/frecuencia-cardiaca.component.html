@@ -1,18 +1,20 @@
 <div class="contFrec">
   <h3>Frecuencia Cardiaca</h3>
-  @if(lect.presencia==false){
+  <ion-icon name="heart" class="corazon"></ion-icon>
+  @if (lect.presencia) {
+    <p>BPM: {{ lect.bpm }}</p>
+    @if (lect.valido) {
+      <p>¿Creer en este valor?: Con este sensor 50/50... pero si mas que a los hombres</p>
+    } @else {
+      <p>¿Creer en este valor?: Si, claro. Como en los hombres</p>
+    }
+  }
+  @else{
     <p id="msjNoPres">
       Acerque su dedo indice al lector
     </p>
-
   }
-
-  <p>BPM: {{lect.bpm}}</p>
-
-  @if(lect.valido==true){
-    <p>Valor fidedigno?: Si</p>
-  }
-  @else{
-    <p>Valor fidedigno?: No</p>
-  }
+  <ion-button (click)="ocultar()">
+    Ocultar
+  </ion-button>
 </div>

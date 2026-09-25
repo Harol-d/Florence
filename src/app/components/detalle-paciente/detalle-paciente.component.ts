@@ -1,7 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import {ConsultasComponent} from '../consultas/consultas.component';
 import{FrecuenciaCardiacaComponent} from '../frecuencia-cardiaca/frecuencia-cardiaca.component'
-import {LecturasEsp} from '../../data/interfaces/lecturas-esp.model'
 import {DatosEmergencia} from '../../data/interfaces/datos-emergencia.model'
 import {IonButton} from '@ionic/angular';
 @Component({
@@ -18,12 +17,15 @@ export class DetallePacienteComponent  implements OnInit {
   ngOnInit() {}
 
   @Input() pac: DatosEmergencia;
-  @Input() lectDetalle: LecturasEsp;
 
   mostrarFC: boolean=false;
 
   abrirFC(){
     this.mostrarFC = true
+  }
+
+  cerrarFC(){
+    this.mostrarFC=false;
   }
 
 }

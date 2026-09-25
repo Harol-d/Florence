@@ -4,7 +4,6 @@ import { HttpClient } from '@angular/common/http';
 import { IonInput, IonButton } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
 import {DatosEmergencia} from '../../data/interfaces/datos-emergencia.model'
-import {LecturasEsp} from '../../data/interfaces/lecturas-esp.model'
 
 @Component({
   selector: 'app-lector',
@@ -22,9 +21,8 @@ export class LectorComponent implements OnInit {
   actualizar: ChangeDetectorRef;
 
   @Output() pacEncontrado = new EventEmitter();
-  @Output() lectFrec = new EventEmitter();
 
-  constructor(pet: HttpClient, detec: ChangeDetectorRef) {
+  constructor(private pet: HttpClient, detec: ChangeDetectorRef) {
     this.http= pet;
     this.actualizar= detec;
   }
@@ -34,9 +32,8 @@ export class LectorComponent implements OnInit {
   }
 
   leerPulsera(){
-    this.http.get(this.ipLector).subscribe((res:LecturasEsp)=>{
+    this.http.get(this.ipLector).subscribe((res:any)=>{
       this.codUid= res.uid;
-      this.lectFrec.emit(res);
       this.actualizar.detectChanges();
     })
   }
@@ -48,11 +45,10 @@ export class LectorComponent implements OnInit {
       (res: DatosEmergencia) => {
         this.noPac = "";
         this.pacEncontrado.emit(res);
-      },
       () => {
         this.noPac = "PACIENTE NO SE ENCUENTRA EN EL SISTEMA";
         this.pacEncontrado.emit(null);
       }
-    );
+    });
   }
 }

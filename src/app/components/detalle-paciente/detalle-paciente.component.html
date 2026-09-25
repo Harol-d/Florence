@@ -43,7 +43,7 @@
   </div>
 
   @if (mostrarFC) {
-    <app-frecuencia-cardiaca [lect]="lectDetalle"></app-frecuencia-cardiaca>
+    <app-frecuencia-cardiaca (cerrar)="cerrarFC()"></app-frecuencia-cardiaca>
   }
 
   <h3>Médicos tratantes</h3>
