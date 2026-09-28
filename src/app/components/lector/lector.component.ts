@@ -22,7 +22,7 @@ export class LectorComponent implements OnInit {
 
   @Output() pacEncontrado = new EventEmitter();
 
-  constructor(private pet: HttpClient, detec: ChangeDetectorRef) {
+  constructor(pet: HttpClient, detec: ChangeDetectorRef) {
     this.http= pet;
     this.actualizar= detec;
   }
@@ -32,7 +32,7 @@ export class LectorComponent implements OnInit {
   }
 
   leerPulsera(){
-    this.http.get(this.ipLector).subscribe((res:any)=>{
+    this.http.get(this.ipLector).subscribe((res:{uid:string})=>{
       this.codUid= res.uid;
       this.actualizar.detectChanges();
     })

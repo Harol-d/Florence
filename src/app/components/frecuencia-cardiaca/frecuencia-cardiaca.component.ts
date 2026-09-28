@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectorRef, OnDestroy, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, Output, EventEmitter } from '@angular/core';
 import {LecturasEsp} from '../../data/interfaces/lecturas-esp.model'
 import { Subscription } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
@@ -13,17 +13,12 @@ import { heart } from 'ionicons/icons';
   standalone: true,
   imports: [IonButton, IonIcon],
 })
-export class FrecuenciaCardiacaComponent  implements OnInit, OnDestroy {
+export class FrecuenciaCardiacaComponent implements OnInit{
   ipEsp: string="http://florence-frecuencia.local/";
   lecturas: Subscription;
   http: HttpClient;
   act: ChangeDetectorRef;
-
-  lect:LecturasEsp={
-    bpm:0,
-    valido:false,
-    presencia:false
-  }
+  lect:LecturasEsp;
 
   @Output() cerrar = new EventEmitter();
 
@@ -34,14 +29,7 @@ export class FrecuenciaCardiacaComponent  implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.lectBPM();
     this.lecturas=interval(100).subscribe(()=>{this.lectBPM();})
-  }
-
-  ngOnDestroy(){
-    if(this.lecturas){
-      this.lecturas.unsubscribe();
-    }
   }
 
   lectBPM(){
@@ -50,7 +38,6 @@ export class FrecuenciaCardiacaComponent  implements OnInit, OnDestroy {
         this.lect=res;
         this.act.detectChanges();
       }
-
     )
   }
 
